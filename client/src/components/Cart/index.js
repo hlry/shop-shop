@@ -52,6 +52,24 @@ const Cart = () => {
             variables: { products: productIds }
         });
     };
+    // adding this because of the insurmountable error that arises 
+    // from making useEffect conditional (2x in this index)
+    if (!state.cartOpen) {
+        return (
+            <div className="cart-closed" onClick={toggleCart}>
+                <span
+                    role="img"
+                    aria-label="trash">🛒</span>
+            </div>
+        );
+    }
+    // adding this because of the insurmountable error that arises 
+    // from making useEffect conditional (2x in this index)
+    if (data) {
+        stripePromise.then((res) => {
+            res.redirectToCheckout({ sessionId: data.checkout.session });
+        });
+    }
 
     // useEffect(() => {
     //     async function getCart() {
