@@ -53,24 +53,24 @@ const Cart = () => {
         });
     };
 
-    useEffect(() => {
-        async function getCart() {
-            const cart = await idbPromise('cart', 'get');
-            dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
-        };
+    // useEffect(() => {
+    //     async function getCart() {
+    //         const cart = await idbPromise('cart', 'get');
+    //         dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
+    //     };
 
-        if (!state.cart.length) {
-            getCart();
-        }
-    }, [state.cart.length, dispatch]);
+    //     if (!state.cart.length) {
+    //         getCart();
+    //     }
+    // }, [state.cart.length, dispatch]);
 
-    useEffect(() => {
-        if (data) {
-            stripePromise.then((res) => {
-                res.redirectToCheckout({ sessionId: data.checkout.session });
-            });
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     if (data) {
+    //         stripePromise.then((res) => {
+    //             res.redirectToCheckout({ sessionId: data.checkout.session });
+    //         });
+    //     }
+    // }, [data]);
 
     return (
         <div className="cart">
